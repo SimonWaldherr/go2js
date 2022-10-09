@@ -1,6 +1,6 @@
-GOOS=linux gopherjs build src/compile/compile.go --output src/compile/go2js-compile.js --minify
-GOOS=linux gopherjs build src/format/format.go --output src/format/go2js-format.js --minify
-GOOS=linux gopherjs build src/format/format-no-imports.go --output src/format/go2js-format-no-imports.js --minify
+GOOS=js gopherjs build src/compile/compile.go --output src/compile/go2js-compile.js --minify
+GOOS=js gopherjs build src/format/format.go --output src/format/go2js-format.js --minify
+GOOS=js gopherjs build src/format/format-no-imports.go --output src/format/go2js-format-no-imports.js --minify
 npx esbuild src/index.ts --outfile=build/index.js --format=iife --global-name=go2js --bundle --minify --sourcemap
 npx esbuild src/index.ts --outfile=build/index.esm.js --format=esm --bundle --minify --sourcemap
 cp src/compile/go2js-compile.js build/go2js-compile.js

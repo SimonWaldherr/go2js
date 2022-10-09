@@ -7,6 +7,8 @@ require (
 	github.com/neelance/go-angularjs v0.0.0-20170205214111-8c6312cca6e2
 	golang.org/x/tools v0.1.7
 	honnef.co/go/js/dom v0.0.0-20210725211120-f030747120f2
+	github.com/gopherjs/gopherjs v1.18.0-beta1
+	github.com/gopherjs/gopherjs.github.io/playground v0.0.0-20211027181711-da251c82ece2
 	honnef.co/go/js/xhr v0.0.0-20150307031022-00e3346113ae
 )
 
@@ -24,5 +26,6 @@ require (
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
 	golang.org/x/sys v0.0.0-20211105183446-c75c47738b0c // indirect
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
+	golang.org/x/tools v0.1.12 // indirect
 	honnef.co/go/js/util v0.0.0-20150216223935-96b8dd9d1621 // indirect
 )
