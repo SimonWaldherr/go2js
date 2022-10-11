@@ -1,37 +1,81 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Go2JS</title>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/go2js/build/index.js"></script> -->
+    <title>GopherJS</title>
     <script src="index.js"></script>
+    <script>
+      var GolangSrc = 'https://simonwaldherr.github.io/go2js/build/';
+      
+      var console=(function(oldCons){
+          return {
+              log: function(text){
+                  oldCons.log(text);
+                  document.getElementById('stdout').value = text
+              },
+              info: function (text) {
+                  oldCons.info(text);
+                  document.getElementById('stdout').value = text
+              },
+              warn: function (text) {
+                  oldCons.warn(text);
+                  document.getElementById('stdout').value = text
+              },
+              error: function (text) {
+                  oldCons.error(text);
+                  document.getElementById('stdout').value = text
+              }
+          };
+      }(window.console));
+      
+      window.console = console;
+    </script>
+    <style>
+      textarea {
+        min-width: 300px;
+        min-height: 160px;
+      }
+    </style>
   </head>
   <body>
-    check console
-    <textarea id="ta" onkeyup="run();">
+    <textarea id="ta">
 package main
 import "fmt"
 func main() {fmt.Println("Hello, from Go")
 //js.Global().Call("alert", "Hello, JavaScript")
 //println("Hello, JS console")
 }
+    </textarea></br>
+    <input name="fmt" type="button" value="fmt" onclick="fmt();">
+    <input name="run" type="button" value="run" onclick="run();">
+      
+    </br>
+    <textarea id="stdout">
+      
     </textarea>
     <script>
       function run() {
         code = document.getElementById('ta').value;
         
-        console.log(code);
         var ret = window.go2js
           .format(code)
           .then((formatted) => {
             document.getElementById('ta').value = formatted;
-            //console.log(formatted);
-            //return window.go2js.compile(formatted, 'https://cdn.jsdelivr.net/npm/go2js/build');
-            return window.go2js.compile(formatted, './');
-            //return window.go2js.compile(formatted);
+            return window.go2js.compile(formatted, GolangSrc);
           })
           .then(eval)
-          .catch(console.warn);
-          //console.log(ret);
+          .catch(console);
+      }
+      
+      function fmt() {
+        code = document.getElementById('ta').value;
+        
+        var ret = window.go2js
+          .format(code)
+          .then((formatted) => {
+            document.getElementById('ta').value = formatted;
+          })
+          .then(eval)
+          .catch(console);
       }
       
     </script>
